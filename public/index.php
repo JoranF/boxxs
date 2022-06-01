@@ -23,7 +23,7 @@ $_SESSION['file_id'] = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
-    <title>Document</title>
+    <title>bloxxs</title>
 </head>
 
 <body>
@@ -45,9 +45,11 @@ $_SESSION['file_id'] = 0;
                             <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?= $_SESSION['user']['email']; ?></span>
                         </div>
                         <ul class="py-1" aria-labelledby="dropdown">
+                        <?php if ($_SESSION['user']['email'] == 'jor@gmail.com') : ?>
                             <li>
-                                <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                <a href="./admin.php" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                             </li>
+                            <?php endif ?>
                             <!-- <li>
                             <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                         </li> -->
@@ -82,6 +84,7 @@ $_SESSION['file_id'] = 0;
     <?php endif ?>
 
     <div class="flex">
+<?php if (isset($_SESSION['user']['id'])) : ?>
         <?php if (!isset($_GET['shared'])) : ?>
             <aside class="w-64" aria-label="Sidebar">
                 <div class="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
@@ -107,6 +110,7 @@ $_SESSION['file_id'] = 0;
                 </div>
             </aside>
         <?php endif ?>
+<?php endif ?>
 
         <!-- show files here -->
         <div class="justify-center w-screen m-10">
@@ -452,7 +456,7 @@ $_SESSION['file_id'] = 0;
                 dataType: "html",
                 async: false,
                 success: function() {
-                    window.location.href = '../src/sharing.php';
+                    window.location.href = '../public/sharing.php';
                 }
             });
         });

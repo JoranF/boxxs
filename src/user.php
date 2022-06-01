@@ -35,5 +35,33 @@ class User
         $stmt->bindParam(':password', $hash);
         $stmt->execute();
         return true;
+
+        mkdir("../uploads/" . $this->db->conn->lastInsertId());
+
+    }
+
+    public function getUserDates()
+    {
+        $sql = "SELECT * FROM users ORDER BY reg_date";
+        $stmt = $this->db->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    public function getsharechart()
+    {
+        $sql = "SELECT * FROM shared_files ORDER BY time";
+        $stmt = $this->db->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    public function getAllUsers()
+    {
+        $sql = 'SELECT * FROM users';
+        $stmt = $this->db->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
     }
 }
